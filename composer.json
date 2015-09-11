@@ -1,0 +1,17 @@
+{
+  "name": "taitava/silverstripe-cloakemail",
+  "description": "Module to easily encode email addresses inside templates, page content and PHP code so that SPAM bots can't understand them, but human readers see them clearly.",
+  "type": "silverstripe-module",
+  "license": "MIT",
+  "require": {
+    "silverstripe/framework": "3.*",
+    "silverstripe/cms": "3.*"
+  },
+  "keywords": ["silverstripe","email","hide","hide email","cloak","spam","bot"],
+  "authors": [{
+    "name": "Jarkko Linnanvirta",
+    "email": "posti@taitavasti.fi",
+    "homepage": "http://taitavasti.fi",
+    "role": "Developer"
+  }]
+}

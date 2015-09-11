@@ -1,0 +1,24 @@
+---
+name: cloakemail
+---
+CloakEmail:
+  mode: 'simple'
+  convert_page_content: false
+  template_insert_links: false
+  page_insert_links: false
+  at: ' [a] '
+  dot: ' [dot] '
+  hard_noscript_error: 'JavaScript must be turned on in order to see this email address.'
+
+Text:
+  extensions:
+    - CloakEmailDatatypeExtension
+Varchar:
+  extensions:
+    - CloakEmailDatatypeExtension
+Enum:
+  extensions:
+    - CloakEmailDatatypeExtension
+SiteTree:
+  extensions:
+    - CloakEmailPageExtension
