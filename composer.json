@@ -13,5 +13,8 @@
     "email": "posti@taitavasti.fi",
     "homepage": "http://taitavasti.fi",
     "role": "Developer"
-  }]
+  }],
+  "extra": {
+    "installer-name": "cloakemail"
+  }
 }
