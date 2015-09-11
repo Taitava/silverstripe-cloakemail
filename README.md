@@ -72,7 +72,7 @@ Default: false for both variables
 
 @ and . will be replaced with these strings in email addresses when mode is either 'simple' or 'nojs'. In 'hard' mode these are not used, because the email addresses get totally scrambled in that mode. HTML code is allowed here.
 
-Defaults: ' [at] ' and ' [dot] '
+Defaults: ' at ' and ' dot '
 
 ### hard_noscript_error
 
