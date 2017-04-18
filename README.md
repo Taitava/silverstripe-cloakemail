@@ -40,6 +40,7 @@ Email addresses in Page objects' contents are cloaked automatically, but only if
 	  convert_page_content: true
 	  page_insert_links: false
 	  template_insert_links: false
+	  purge_mailto_links: false
       at: ' [a] '
       dot: ' [dot] '
       hard_noscript_error: 'JavaScript must be turned on in order to see this email address'
@@ -67,6 +68,18 @@ Default: false
 If true, wraps cloaked email addresses inside mailto-links (<a href="mailto:*CLOAKED ADDRESS*">*CLOAKED ADDRESS*</a>). However, this is not done if [i]mode[/i] is set to [i]none[/i].
 
 Default: false for both variables
+
+### purge_mailto_links
+
+The purpose of this option is to prevent malformed HTML code from being generated if set to true and if the source HTML content contains email address links like `<a href="mailto:email@address.com">email@address.com</a>`. If this option is off, the module would convert the email address in the `href` attribute in a way that would insert HTML inside the attribute, which would simply break the outputted HTML.
+
+This option provides a "quirky" workaround to this problem by removing all mailto links from the HTML content before starting to process it. So it replaces the link with the email address found from the `href` attribute. **Please note that the anchor text of the link is not preserved in any way!**
+
+You can use page_insert_links and/or template_insert_links options to recreate the mailto links, but you still can't get the original anchor texts back, instead the email address itself will be used as the anchor text - which is usually correct.
+
+So while this feature does not perfectly fix the bug that it relates to, at least it offers a better-than-nothing solution. If you want to start a discussion about this topic, please see the issue #3 . Please do not hesitate to ask if you have any questions about this feature/bug! :)
+
+Default: false
 
 ### at and dot
 

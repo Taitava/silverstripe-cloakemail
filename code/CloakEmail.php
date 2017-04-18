@@ -29,15 +29,21 @@ class CloakEmailPageExtension extends DataExtension
 	}
 }
 
-class CloakEmail
+class CloakEmail extends Object
 {
-	static $mode					= 'simple';
-	static $convert_page_content	= false;
-	static $template_insert_links	= false;
-	static $page_insert_links		= false;
-	static $at						= ' at ';
-	static $dot						= ' dot ';
-	static $hard_noscript_error		= 'JavaScript must be turned on in order to see this email address.';
+	private static $mode					= 'simple';
+	private static $convert_page_content	= false;
+	private static $template_insert_links	= false;
+	private static $page_insert_links		= false;
+	private static $at						= ' at ';
+	private static $dot						= ' dot ';
+	private static $hard_noscript_error		= 'JavaScript must be turned on in order to see this email address.';
+	
+	/**
+	 * Whether or not to remove any mailto links before converting email addresses. This prevents the conversion from breaking the link HTML, and if you set page_insert_links or template_insert_links to true, the purged links will be recreated - but their anchor text will be replaced with the email address itself even if it were something different before the conversion!
+	 * @var bool
+	 */
+	private static $purge_mailto_links = false;
 	
 	public static function Cloak($value, $type)
 	{
@@ -60,6 +66,14 @@ class CloakEmail
 			3) Segment that contains a tld (like .com) or multiple tld's (like .co.uk or .what.ever.com)
 			Modifier 'i' makes it case insensitive, and 'x' makes spaces meaningless (= more readable)
 		*/
+		
+		if (static::config()->get('purge_mailto_links'))
+		{
+			//Remove <a href="mailto: ... links in order to prevent the conversion from corrupting the HTML.
+			$link_detection_pattern = '/ <a [^>].* href=["\']mailto: ([^"\']+) ["\'] [^>]* > (.*?) <\/a\s*> /ix';
+			$content = preg_replace($link_detection_pattern, '$1', $content);
+		}
+		
 		return preg_replace_callback(
 			$email_detection_pattern,
 			function ($matches) use ($type)
