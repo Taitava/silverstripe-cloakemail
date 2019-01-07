@@ -6,6 +6,7 @@ CloakEmail:
   convert_page_content: false
   template_insert_links: false
   page_insert_links: false
+  purge_mailto_links: true
   at: ' [a] '
   dot: ' [dot] '
   hard_noscript_error: 'JavaScript must be turned on in order to see this email address.'

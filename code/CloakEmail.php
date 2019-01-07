@@ -43,7 +43,7 @@ class CloakEmail extends Object
 	 * Whether or not to remove any mailto links before converting email addresses. This prevents the conversion from breaking the link HTML, and if you set page_insert_links or template_insert_links to true, the purged links will be recreated - but their anchor text will be replaced with the email address itself even if it were something different before the conversion!
 	 * @var bool
 	 */
-	private static $purge_mailto_links = false;
+	private static $purge_mailto_links = true;
 	
 	public static function Cloak($value, $type)
 	{
