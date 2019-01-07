@@ -4,8 +4,8 @@
   "type": "silverstripe-module",
   "license": "MIT",
   "require": {
-    "silverstripe/framework": "~3.1",
-    "silverstripe/cms": "~3.1"
+    "silverstripe/framework": "~4.0",
+    "silverstripe/cms": "~4.0"
   },
   "keywords": ["silverstripe","email","hide","hide email","cloak","spam","bot"],
   "authors": [{
