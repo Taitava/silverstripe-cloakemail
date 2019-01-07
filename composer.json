@@ -16,6 +16,9 @@
     "role": "Developer"
   }],
   "extra": {
+    "expose": [
+      "js"
+    ],
     "installer-name": "cloakemail"
   }
 }

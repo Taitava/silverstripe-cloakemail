@@ -67,8 +67,8 @@ class CloakEmail
 		static $done = false;
 		if ($done) return;
 		Requirements::customScript('var CloakEmailOptions = '.json_encode($options).';');
-		Requirements::javascript('framework/thirdparty/jquery/jquery.js');
-		Requirements::javascript('cloakemail/js/CloakEmail.js');
+		Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.js');
+		Requirements::javascript('taitava/cloakemail: js/CloakEmail.js');
 		$done = true;
 	}
 	
