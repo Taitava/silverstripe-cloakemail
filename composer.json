@@ -1,7 +1,7 @@
 {
   "name": "taitava/silverstripe-cloakemail",
   "description": "Module to easily encode email addresses inside templates, page content and PHP code so that SPAM bots can't understand them, but human readers see them clearly.",
-  "type": "silverstripe-module",
+  "type": "silverstripe-vendormodule",
   "license": "MIT",
   "require": {
     "ext-json": "*",
