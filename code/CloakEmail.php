@@ -2,10 +2,13 @@
 
 namespace Taitava\CloakEmail;
 
+use SilverStripe\Core\Config\Configurable;
 use SilverStripe\View\Requirements;
 
-class CloakEmail extends Object
+class CloakEmail
 {
+	use Configurable;
+	
 	private static $mode					= 'simple';
 	private static $convert_page_content	= false;
 	private static $template_insert_links	= false;
@@ -72,11 +75,11 @@ class CloakEmail extends Object
 	public static function getOptions($type)
 	{
 		return array(
-			'mode'					=> Config::inst()->get(__CLASS__, 'mode'),
-			'dot'					=> Config::inst()->get(__CLASS__, 'dot'),
-			'at'					=> Config::inst()->get(__CLASS__, 'at'),
-			'insert_link'			=> Config::inst()->get(__CLASS__, ($type == 'page' ? 'page_insert_links' : 'template_insert_links')),
-			'hard_noscript_error'	=> Config::inst()->get(__CLASS__, 'hard_noscript_error'),
+			'mode' => static::config()->mode,
+			'dot' => static::config()->dot,
+			'at' => static::config()->at,
+			'insert_link' => (bool) static::config()->get($type == 'page' ? 'page_insert_links' : 'template_insert_links'),
+			'hard_noscript_error' => static::config()->hard_noscript_error,
 		);
 	}
 }
