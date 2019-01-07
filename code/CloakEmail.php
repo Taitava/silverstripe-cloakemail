@@ -1,34 +1,5 @@
 <?php
 
-class CloakEmailDatatypeExtension extends DataExtension
-{
-	public function Cloak() //This becomes a method in datatypes Text, Varchar and Enum. Can be called from templates, but also from PHP code.
-	{
-		return CloakEmail::CloakAll($this->owner->value, 'template');
-	}
-}
-
-class CloakEmailPageExtension extends DataExtension
-{
-	public function Content()
-	{
-		if (!Config::inst()->get('CloakEmail', 'convert_page_content'))
-		{
-			//Page content conversion is disabled, so just return the content as is.
-			return $this->owner->Content;
-		}
-		
-		#return $this->owner->Content;
-		return CloakEmail::CloakAll($this->owner->Content, 'page');
-		
-	}
-	
-	public function Cloak($value)  //This can be called from templates using $Cloak within the scope of a Page object
-	{
-		return CloakEmail::Cloak($value, 'template');
-	}
-}
-
 class CloakEmail extends Object
 {
 	private static $mode					= 'simple';
@@ -103,43 +74,6 @@ class CloakEmail extends Object
 			'insert_link'			=> Config::inst()->get(__CLASS__, ($type == 'page' ? 'page_insert_links' : 'template_insert_links')),
 			'hard_noscript_error'	=> Config::inst()->get(__CLASS__, 'hard_noscript_error'),
 		);
-	}
-}
-
-class CloakEmailModes
-{
-	public static function none($value)
-	{
-		return $value;
-	}
-	
-	public static function nojs($value, $options)
-	{
-		$address = str_replace(array('.','@'), array($options['dot'],$options['at']), $value);
-		if ($options['insert_link']) return "<a href=\"mailto:$address\">$address</a>";
-		return $address;
-	}
-	
-	public static function simple($value, $options)
-	{
-		CloakEmail::RequireJavaScript($options);
-		$address = str_replace(array('.','@'), array($options['dot'],$options['at']), $value);
-		if ($options['insert_link']) $address = "<a href=\"mailto:$address\">$address</a>";
-		return '<span class="simple-cloak">'.$address.'</span>';
-	}
-	
-	public static function hard($value, $options)
-	{
-		CloakEmail::RequireJavaScript($options);
-		$noscript = '<noscript>'.$options['hard_noscript_error'].'</noscript>';
-		$chars = array();
-		for ($i = 0; $i < strlen($value); $i++)
-		{
-			$char	= $value[$i];
-			$chars[]= ord($char); //Convert the character to a decimal number
-		}
-		$insert_link = $options['insert_link'] ? ' insert-link' : '';
-		return "$noscript<span class=\"hard-cloak$insert_link\" style=\"display: none;\">".implode('-',$chars)."</span>";
 	}
 }
 
