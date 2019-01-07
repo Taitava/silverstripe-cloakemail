@@ -12,7 +12,17 @@ Module to easily encode email addresses inside templates, page content and PHP c
 
 ## Requirements
 
-SilverStripe 3.0.0 or greater
+- SilverStripe 4.0.0 or greater
+- PHP extensions: `json`
+- jQuery (unless you use the `nojs` `mode`, but it's ugly)
+
+## Installation
+
+The recommended way to install this module is by using `composer`:
+
+```
+composer require "taitava/silverstripe-cloakemail:*"
+```
 
 ## Documentation
 
@@ -30,17 +40,17 @@ Email addresses in Page objects' contents are cloaked automatically, but only if
 
 ## Configuration
 
-*mysite/_config/cloakemail.yml*
+*app/_config/cloakemail.yml*
 
 	---
-	name: cloakemail
+	after: cloakemail
 	---
-	CloakEmail:
+	Taitava\CloakEmail\CloakEmail:
 	  mode: simple
 	  convert_page_content: true
 	  page_insert_links: false
 	  template_insert_links: false
-	  purge_mailto_links: false
+	  purge_mailto_links: true
       at: ' [a] '
       dot: ' [dot] '
       hard_noscript_error: 'JavaScript must be turned on in order to see this email address'
