@@ -1,5 +1,9 @@
 <?php
 
+namespace Taitava\CloakEmail;
+
+use SilverStripe\View\Requirements;
+
 class CloakEmail extends Object
 {
 	private static $mode					= 'simple';
@@ -22,7 +26,7 @@ class CloakEmail extends Object
 		
 		$options= static::getOptions($type);
 		$mode	= $options['mode'];
-		return CloakEmailModes::$mode($value, $options);
+		return CloakingModes::$mode($value, $options);
 	}
 	
 	public static function CloakAll($content, $type)

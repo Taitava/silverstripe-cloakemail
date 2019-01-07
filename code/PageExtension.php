@@ -1,6 +1,10 @@
 <?php
 
-class CloakEmailPageExtension extends DataExtension
+namespace Taitava\CloakEmail;
+
+use SilverStripe\ORM\DataExtension;
+
+class PageExtension extends DataExtension
 {
 	public function Content()
 	{

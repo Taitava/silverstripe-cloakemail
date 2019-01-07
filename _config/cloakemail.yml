@@ -1,7 +1,7 @@
 ---
 name: cloakemail
 ---
-CloakEmail:
+Taitava\CloakEmail\CloakEmail:
   mode: 'simple'
   convert_page_content: false
   template_insert_links: false
@@ -11,15 +11,15 @@ CloakEmail:
   dot: ' [dot] '
   hard_noscript_error: 'JavaScript must be turned on in order to see this email address.'
 
-Text:
+SilverStripe\ORM\FieldType\DBText:
   extensions:
-    - CloakEmailDatatypeExtension
-Varchar:
+    - Taitava\CloakEmail\DatatypeExtension
+SilverStripe\ORM\FieldType\DBVarchar:
   extensions:
-    - CloakEmailDatatypeExtension
-Enum:
+    - Taitava\CloakEmail\DatatypeExtension
+SilverStripe\ORM\FieldType\DBEnum:
   extensions:
-    - CloakEmailDatatypeExtension
-SiteTree:
+    - Taitava\CloakEmail\DatatypeExtension
+SilverStripe\CMS\Model\SiteTree:
   extensions:
-    - CloakEmailPageExtension
+    - Taitava\CloakEmail\PageExtension

@@ -1,6 +1,8 @@
 <?php
 
-class CloakEmailModes
+namespace Taitava\CloakEmail;
+
+class CloakingModes
 {
 	public static function none($value)
 	{
