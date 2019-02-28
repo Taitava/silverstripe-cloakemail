@@ -29,7 +29,7 @@ class CloakEmailPageExtension extends DataExtension
 	}
 }
 
-class CloakEmail extends Object
+class CloakEmail extends SS_Object
 {
 	private static $mode					= 'simple';
 	private static $convert_page_content	= false;
