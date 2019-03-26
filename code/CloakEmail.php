@@ -7,25 +7,36 @@ class CloakEmailDatatypeExtension extends DataExtension
 		return CloakEmail::CloakAll($this->owner->value, 'template');
 	}
 }
-
 class CloakEmailPageExtension extends DataExtension
 {
-	public function Content()
+	public function getContent()
 	{
-		if (!Config::inst()->get('CloakEmail', 'convert_page_content'))
+		$convert_page_content = Config::inst()->get('CloakEmail', 'convert_page_content');
+		if (!$convert_page_content || $this->isCMS())
 		{
 			//Page content conversion is disabled, so just return the content as is.
-			return $this->owner->Content;
+			//Or we are in Page editor, in which case content should be presented in the original form.
+			return $this->owner->getField('Content');
 		}
 		
 		#return $this->owner->Content;
-		return CloakEmail::CloakAll($this->owner->Content, 'page');
+		return CloakEmail::CloakAll($this->owner->getField('Content'), 'page');
 		
 	}
 	
 	public function Cloak($value)  //This can be called from templates using $Cloak within the scope of a Page object
 	{
 		return CloakEmail::Cloak($value, 'template');
+	}
+	
+	/**
+	 * Returns true if the user is currently using the page editor, and false if the user is just visiting the website.
+	 *
+	 * @return bool
+	 */
+	private function isCMS()
+	{
+		return is_subclass_of(Controller::curr(), LeftAndMain::class);
 	}
 }
 
