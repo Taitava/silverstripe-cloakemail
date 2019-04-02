@@ -18,7 +18,15 @@ class PageExtension extends DataExtension
 		
 	}
 	
-	public function Cloak($value)  //This can be called from templates using $Cloak within the scope of a Page object
+	/**
+	 * This can be called from templates using $Cloak within the scope of a Page object
+	 *
+	 * TODO: Move this to a new TemplateGlobalProvider implementor class. It will make this available globally, not only in SiteTree context.
+	 *
+	 * @param $value
+	 * @return mixed
+	 */
+	public function Cloak($value)
 	{
 		return CloakEmail::Cloak($value, 'template');
 	}
